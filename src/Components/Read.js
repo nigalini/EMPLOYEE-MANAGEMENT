@@ -3,9 +3,7 @@ import { Box, Button, IconButton, Paper, Table, TableBody, TableCell, TableConta
 import axios from 'axios'
 import React, { useEffect, useState,Fragment, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { DownloadTableExcel, downloadExcel } from 'react-export-table-to-excel';
-import { jsPDF } from "jspdf";
-import { useReactToPrint } from 'react-to-print';
+import {  downloadExcel } from 'react-export-table-to-excel';
 
  
 
@@ -14,7 +12,6 @@ export default function Read() {
   const [employee,setEmployee]=useState([])
   const navigate=useNavigate()
   const excelRef=useRef(null)
-  const componentPDF=useRef();
   console.log(employee)
   const header = ["Firstname", "Lastname", "Age","Mobile","Email","Password","Designation","ID"];
 //to dwnld in excel
@@ -34,15 +31,13 @@ export default function Read() {
 //to dwnd pdf
 const tableDwnldPDF=()=>
   {
-  const doc = new jsPDF({
-    orientation: "portrait",
-    unit: "in",
-  });
+ 
   
 }
 
 
   //get function
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchData = async()=>{
     const {data} = await axios.get("https://644077bb792fe886a88f63d3.mockapi.io/employee")
 setEmployee(data)
