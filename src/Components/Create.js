@@ -69,7 +69,7 @@ useEffect(()=>{
 if(location.state){
   getEmployee(location.state.id)
 }
-},[])
+},[location.state])
   return (
    <Fragment>
     <Grid container justifyContent="center" textAlign="center">
