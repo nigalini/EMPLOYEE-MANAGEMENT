@@ -4,6 +4,8 @@ import axios from 'axios'
 import React, { useEffect, useState,Fragment, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import {  downloadExcel } from 'react-export-table-to-excel';
+import JsPDF from "jspdf";
+import  autoTable from "jspdf-autotable";
 
  
 
@@ -13,7 +15,7 @@ export default function Read() {
   const navigate=useNavigate()
   const excelRef=useRef(null)
   console.log(employee)
-  const header = ["Firstname", "Lastname", "Age","Mobile","Email","Password","Designation","ID"];
+  const header = ["firstName", "lastName", "age","Mobile","Email","Password","Designation","ID"];
 //to dwnld in excel
   function handleDownloadExcel() {
     downloadExcel({
@@ -29,11 +31,14 @@ export default function Read() {
 
 
 //to dwnd pdf
-const tableDwnldPDF=()=>
-  {
- 
+ const  tableDwnldPDF =() =>{ 
+  const doc = new JsPDF();
+  autoTable(doc, { html: '#my-table' })
+
+  doc.save(`fileName.pdf`);
+ }
   
-}
+
 
 
   //get function
@@ -84,7 +89,7 @@ if(employee.length===0){
     </Box>
 <TableContainer  component={Paper}>
   
-  <Table ref={excelRef} stickyHeader>
+  <Table id="my-table" ref={excelRef} stickyHeader>
   
     <TableHead  >
       <TableCell>

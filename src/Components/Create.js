@@ -106,7 +106,7 @@ return <MenuItem key={key} value={res}>
  location.state && location.state.id ? updateEmployee(location.state.id) :createEmployee()
 }} size='large' variant="contained">{
   location.state && location.state.id ? "Update" :"Create"
-}</Button>
+ }</Button>
 </Paper>
         </Grid>
 
